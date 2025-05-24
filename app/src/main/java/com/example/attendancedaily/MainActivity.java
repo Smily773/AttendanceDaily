@@ -32,8 +32,20 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                if (button.isChecked()) {
+                    // If Admin radio button is selected, pass Admin info
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("userType", "admin");
+                    startActivity(intent);
+                } else if (button1.isChecked()) {
+                    // If Employee radio button is selected, pass Employee info
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("userType", "employee");
+                    startActivity(intent);
+                } else {
+                    // If neither is selected, show a message (optional)
+                    textView.setText("Please select a user type.");
+                }
             }
         });
 
